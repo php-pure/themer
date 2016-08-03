@@ -12,6 +12,11 @@
             "PhpPure\\Themer\\": "src/"
         }
     },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    },
     "minimum-stability": "dev",
     "require": {
         "cebe/markdown": "^1.1",
