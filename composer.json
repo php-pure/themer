@@ -1,0 +1,20 @@
+{
+    "name": "php-pure/themer",
+    "description": "A markdown based documentation",
+    "authors": [
+        {
+            "name": "Daison Carino",
+            "email": "daison12006013@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PhpPure\\Themer\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "cebe/markdown": "^1.1",
+        "jenssegers/blade": "^1.0"
+    }
+}

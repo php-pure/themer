@@ -1,0 +1,4 @@
+/vendor/
+/generated/
+/tests/slayer-doc/
+.themer.conf
