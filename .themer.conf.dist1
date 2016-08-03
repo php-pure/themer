@@ -1,0 +1,10 @@
+<?php
+
+// an array based that automatically compiles things up
+
+return [
+    'Prologue' => [
+        'Contribution Guide' => __DIR__.'/tests/slayer-doc/prologue/contribution_guide.md',
+        'API Documentation'  => __DIR__.'/tests/slayer-doc/prologue/api_documentation.md',
+    ],
+];
