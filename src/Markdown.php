@@ -1,7 +1,7 @@
 <?php
 namespace PhpPure\Themer;
 
-use cebe\markdown\Markdown as Base;
+use cebe\markdown\GithubMarkdown as Base;
 
 class Markdown
 {

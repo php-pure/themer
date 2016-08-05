@@ -50,6 +50,7 @@
             .article {
                 border-top: 1px dashed #ccc;
                 border-left: 1px dashed #ccc;
+                padding-top: 10px;
             }
             .sidebar {
                 border-top: 1px dashed #ccc;
@@ -66,7 +67,7 @@
             }
             ul[class*="sidebar-level"],
             h1,h2,h3,h4,h5,h6
-             {
+            {
                 font-family: 'Josefin Sans', sans-serif !important;
             }
             .sidebar-level-2 {
@@ -81,16 +82,20 @@
             h5, h6 {
                 margin-top: 0.5em;
             }
-
-
         </style>
     </head>
     <body>
         <div class="container">
             <div class="row">
-                <section class="sidebar col-md-3">
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+                    <h1>{{ str_replace(' - ', '', $title) }}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="sidebar col-md-3">
                     {{ $sidebar }}
-                </section>
+                </div>
                 <div class="article col-md-9">
                     {{ $body }}
                 </div>
