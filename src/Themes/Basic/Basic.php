@@ -67,7 +67,7 @@ class Basic extends AbstractTheme
                                     ? $this->config['base_title']
                                     : 'Documentation',
                 'body'       => $this->parse(file_get_contents($md_file)),
-                'navigation' => $this->blade->make('navigation', [
+                'sidebar'    => $this->blade->make('sidebar', [
                                     'markdowns'    => $this->markdowns,
                                     'md_file'      => $md_file,
                                     'slugs'        => $slugs,
@@ -106,17 +106,20 @@ class Basic extends AbstractTheme
         return $text;
     }
 
-    public static function navigation($markdowns, $md_file, $slugs, $landing_page)
+    public static function sidebar($markdowns, $md_file, $slugs, $landing_page, $menu_num = 1, $sidebar_num = 1)
     {
-        echo "<ul>";
+        echo "<ul class=\"sidebar-level-{$sidebar_num}\">";
         foreach ($markdowns as $menu => $sub_menu_or_value) {
 
             if (is_array($sub_menu_or_value) && !empty($sub_menu_or_value)) {
-                echo "<li>";
-                    ?><span class="nav-menu-title"><?php echo $menu ?></span><?php
+                echo "<li class=\"menu-level-{$menu_num}\">";
+                    ?><div class="nav-menu-title"><?php echo $menu ?></div><?php
+
+                    $sn = $sidebar_num + 1;
+                    $mn = $menu_num + 1;
+                    static::sidebar($sub_menu_or_value, $md_file, $slugs, $landing_page, $mn, $sn);
                 echo "</li>";
 
-                static::navigation($sub_menu_or_value, $md_file, $slugs, $landing_page);
                 continue;
             }
 
@@ -126,7 +129,7 @@ class Basic extends AbstractTheme
                 $file = 'index';
             }
 
-            echo "<li>";
+            echo "<li class=\"menu-level-{$menu_num}\">";
                 ?><a href="<?php echo $file.'.html' ?>"><?php echo $menu ?></a><?php
             echo "</li>";
         }
