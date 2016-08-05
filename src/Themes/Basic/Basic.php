@@ -5,15 +5,12 @@ use PhpPure\Themer\Themes\AbstractTheme;
 
 class Basic extends AbstractTheme
 {
-    private $blade;
     private $config;
     private $markdowns;
 
     public function config($config)
     {
         $this->config = $config;
-        $this->blade = $this->blade(__DIR__.'/Stub', __DIR__.'/Stub');
-
         return $this;
     }
 
@@ -61,13 +58,13 @@ class Basic extends AbstractTheme
                 $file = 'index';
             }
 
-            $ret[static::slug($file).'.html'] = html_entity_decode($this->blade->make('index', [
+            $ret[static::slug($file).'.html'] = html_entity_decode($this->blade()->make('index', [
                 'title'      => $title.' - ',
                 'baseTitle'  => isset($this->config['base_title'])
                                     ? $this->config['base_title']
                                     : 'Documentation',
                 'body'       => $this->parse(file_get_contents($md_file)),
-                'sidebar'    => $this->blade->make('sidebar', [
+                'sidebar'    => $this->blade()->make('sidebar', [
                                     'markdowns'    => $this->markdowns,
                                     'md_file'      => $md_file,
                                     'slugs'        => $slugs,

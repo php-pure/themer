@@ -6,6 +6,7 @@ class Factory
     private $theme;
     private $config;
     private $markdowns;
+    private $views_dir = null;
 
     public function __construct($markdowns, $config = [])
     {
@@ -21,11 +22,17 @@ class Factory
         return $this;
     }
 
+    public function views($dir)
+    {
+        $this->view_dir = $dir;
+    }
+
     public function generate($prefix_folder = '')
     {
         $theme = new $this->theme;
         $theme->config($this->config);
         $theme->markdowns($this->markdowns);
+        $theme->viewsDir($this->views_dir);
         $records = $theme->execute();
 
         foreach ($records as $file => $content) {
