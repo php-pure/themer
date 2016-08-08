@@ -46,7 +46,7 @@ class Factory
                 mkdir($folder, 0777, true);
             }
 
-            $this->checkFolderOrFilePerm($file);
+            // $this->checkFolderOrFilePerm($file);
 
             echo "   Writing to [$file]\n";
             file_put_contents($file, $content);
