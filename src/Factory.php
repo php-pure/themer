@@ -1,6 +1,8 @@
 <?php
 namespace PhpPure\Themer;
 
+use RuntimeException;
+
 class Factory
 {
     private $theme;
@@ -35,6 +37,8 @@ class Factory
         $theme->viewsDir($this->views_dir);
         $records = $theme->execute();
 
+        $this->checkFolderOrFilePerm($prefix_folder);
+
         foreach ($records as $file => $content) {
             $file = $prefix_folder.'/'.$file;
 
@@ -42,7 +46,20 @@ class Factory
                 mkdir($folder, 0777, true);
             }
 
+            $this->checkFolderOrFilePerm($file);
+
+            echo "   Writing to [$file]\n";
             file_put_contents($file, $content);
+        }
+    }
+
+    private function checkFolderOrFilePerm($file_or_folder)
+    {
+        if (!is_writable($file_or_folder)) {
+            throw new RuntimeException(
+                "Folder [$file_or_folder] is not writeable,".
+                " try to apply chmod."
+            );
         }
     }
 }

@@ -8,12 +8,19 @@ if (file_exists($autoload = dirname(dirname(dirname(__DIR__))).'/autoload.php'))
 } elseif (file_exists(__DIR__.'/vendor/autoload.php')) {
     require $autoload;
 } else {
-    throw new Exception("composer vendor/autoload.php not found");
+    throw new RuntimeException("Composer [vendor/autoload.php] not found, did you run composer install?");
 }
 
 use PhpPure\Themer\Factory;
 
-$markdowns = require getcwd().'/.themer.conf';
+$themer_conf = getcwd().'/.themer.conf';
+
+if (!file_exists($themer_conf)) {
+    throw new RuntimeException("We can't load [.themer.conf], file not found.");
+}
+
+echo "Loading [.themer.conf]\n";
+$markdowns = require $themer_conf;
 
 if (is_array($markdowns)) {
     $instance = new Factory($markdowns);
