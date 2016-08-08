@@ -24,6 +24,7 @@
     "minimum-stability": "dev",
     "require": {
         "cebe/markdown": "^1.1",
-        "jenssegers/blade": "^1.0"
+        "jenssegers/blade": "^1.0",
+        "sebastian/git": "^2.1"
     }
 }
