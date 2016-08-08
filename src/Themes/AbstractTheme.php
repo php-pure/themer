@@ -17,9 +17,16 @@ abstract class AbstractTheme
         return Markdown::parse($content);
     }
 
+    protected function getViewsDir()
+    {
+        return $this->views_dir;
+    }
+
     public function viewsDir($views_dir)
     {
         $this->views_dir = $views_dir;
+
+        return $this;
     }
 
     protected function blade($views = null, $cache = null)

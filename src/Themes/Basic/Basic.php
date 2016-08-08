@@ -11,6 +11,7 @@ class Basic extends AbstractTheme
     public function config($config)
     {
         $this->config = $config;
+
         return $this;
     }
 
@@ -58,18 +59,18 @@ class Basic extends AbstractTheme
                 $file = 'index';
             }
 
-            $ret[static::slug($file).'.html'] = html_entity_decode($this->blade()->make('index', [
+            $ret[static::slug($file).'.html'] = html_entity_decode($this->blade()->make('index', $this->config + [
                 'title'      => $title.' - ',
-                'baseTitle'  => isset($this->config['base_title'])
-                                    ? $this->config['base_title']
-                                    : 'Documentation',
                 'body'       => $this->parse(file_get_contents($md_file)),
-                'sidebar'    => $this->blade()->make('sidebar', [
-                                    'markdowns'    => $this->markdowns,
-                                    'md_file'      => $md_file,
-                                    'slugs'        => $slugs,
-                                    'landing_page' => isset($this->config['landing_page']) ? $this->config['landing_page'] : false,
-                                ])->render(),
+                'sidebar'    => $this->blade()->make(
+                                    'sidebar',
+                                    [
+                                        'markdowns'    => $this->markdowns,
+                                        'md_file'      => $md_file,
+                                        'slugs'        => $slugs,
+                                        'landing_page' => isset($this->config['landing_page']) ? $this->config['landing_page'] : false,
+                                    ]
+                                )->render(),
             ])->render());
         }
 

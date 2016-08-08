@@ -21,7 +21,6 @@
             "dev-master": "0.1-dev"
         }
     },
-    "minimum-stability": "dev",
     "require": {
         "cebe/markdown": "^1.1",
         "jenssegers/blade": "^1.0",
