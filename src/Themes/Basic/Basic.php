@@ -75,7 +75,7 @@ class Basic extends AbstractTheme
         }
 
         if (file_exists($this->getViewsDir().'/404.blade.php')) {
-            $ret['404.html'] = html_entity_decode($this->blade()->make('404'));
+            $ret['404.html'] = html_entity_decode($this->blade()->make('404', $this->config));
         }
 
         return $ret;
