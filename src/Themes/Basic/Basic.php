@@ -74,6 +74,10 @@ class Basic extends AbstractTheme
             ])->render());
         }
 
+        if (file_exists($this->getViewsDir().'/404.blade.php')) {
+            $ret['404.html'] = html_entity_decode($this->blade()->make('404'));
+        }
+
         return $ret;
     }
 
