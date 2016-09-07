@@ -45,6 +45,10 @@ class Basic extends AbstractTheme
 
         $slugs = [];
         foreach ($parsed as $file => $md_file) {
+            if (! file_exists($md_file)) {
+                throw new \RuntimeException("File [$md_file] not found.");
+            }
+
             $slugs[$md_file] = static::slug($file);
         }
 
@@ -72,10 +76,15 @@ class Basic extends AbstractTheme
                                     ]
                                 )->render(),
             ])->render());
+
+            echo "   Rendering [$md_file]\n";
         }
 
+        echo "   Checking if 404.blade.php exists";
         if (file_exists($this->getViewsDir().'/404.blade.php')) {
-            $ret['404.html'] = html_entity_decode($this->blade()->make('404', $this->config));
+            echo "   404.blade.php exists";
+            echo "   Rendering the 404.blade.php\n";
+            $ret['404.html'] = html_entity_decode($this->blade()->make('404', $this->config)->render());
         }
 
         return $ret;
