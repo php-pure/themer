@@ -63,7 +63,7 @@ class Basic extends AbstractTheme
                 $file = 'index';
             }
 
-            $ret[static::slug($file).'.html'] = html_entity_decode($this->blade()->make('index', $this->config + [
+            $ret[static::slug($file).'.html'] = $this->blade()->make('index', $this->config + [
                 'title'      => $title.' - ',
                 'body'       => $this->parse(file_get_contents($md_file)),
                 'sidebar'    => $this->blade()->make(
@@ -75,7 +75,7 @@ class Basic extends AbstractTheme
                                         'landing_page' => isset($this->config['landing_page']) ? $this->config['landing_page'] : false,
                                     ]
                                 )->render(),
-            ])->render());
+            ])->render();
 
             echo "   Rendering [$md_file]\n";
         }
@@ -84,7 +84,7 @@ class Basic extends AbstractTheme
         if (file_exists($this->getViewsDir().'/404.blade.php')) {
             echo "   404.blade.php exists";
             echo "   Rendering the 404.blade.php\n";
-            $ret['404.html'] = html_entity_decode($this->blade()->make('404', $this->config)->render());
+            $ret['404.html'] = $this->blade()->make('404', $this->config)->render();
         }
 
         return $ret;
