@@ -5,6 +5,8 @@ A template, the converts markdown `.md` files into well static html page, depend
 ## Index
 - [The Factory](#the-factory)
 - [Themes](#themes)
+- [Test](#test)
+- [Writing your own Theme](#writing-your-own-theme)
 
 # <a href="#the-factory" name="the-factory">The Factory</a>
 
@@ -43,7 +45,7 @@ Finally to call the factory, Please take a note that the below code is still inc
 $map = [...];
 $view_variables = [...];
 
-$factory = new PhpPure\Themer\Factory($map, [], $view_variables);
+$factory = new PhpPure\Themer\Factory($map, $theme_variables, $view_variables);
 ```
 
 # <a href="#themes" name="themes">Themes</a>
@@ -78,10 +80,10 @@ $factory->theme($basic);
 $factory->generate('public/'); // the folder to generate with
 ```
 
-# Test
+# <a href="#test" name="test">Test</a>
 
 We have a sample tests that your could try out or mimic.
 
-# Writing your own Theme
+# <a href="#writing-your-own-theme" name="writing-your-own-theme">Writing your own Theme</a>
 
 I can't write everything here, so maybe let's move on to our [wiki](https://github.com/php-pure/themer/wiki).
